@@ -1,0 +1,14 @@
+name = "dragmove"
+version = 1
+copyright = "bender"
+description = "Formation move liek in spting-rts"
+author = "bender"
+url = ""
+uid = "whatever-1"
+exclusive = false
+ui_only = true
+conflicts = {  }
+requires = {"zcbf6277-24e3-437a-b968-Common-v1"}
+before = {"zcbf6277-24e3-437a-b968-Common-v1"}
+after = { }
+icon = "/mods/todo.png"

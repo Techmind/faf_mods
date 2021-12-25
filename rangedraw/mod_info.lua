@@ -1,0 +1,16 @@
+name = "rangedraw"
+uid = "00000000-0000-0000-0000-000000000002"
+version = 1
+copyright = "techmind_"
+description = "Draws weapons ranges of 100(fatboy)-90(t3 arty)-70(ravager)-50(t2 pd)-30(t1 pd) on holding CTRL. Blatantly copies code from 'Additional Camera Stuff' mod, because author wrote a better code, than my 1st version)"
+author = "techmind_"
+url = ""
+selectable = true
+enabled = true
+exclusive = false
+ui_only = true
+requires = {}
+requiresNames = {}
+conflicts = { }
+before = {}
+after = {}

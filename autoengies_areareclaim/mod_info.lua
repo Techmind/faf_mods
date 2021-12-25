@@ -1,0 +1,14 @@
+name = "autoengies with area reclaim"
+version = 70
+copyright = "bender"
+description = "Auto-reclaim for idle engies with ctrl-drag to select the area"
+author = "bender"
+url = ""
+uid = "2531a4be-a33a-4fb5-8af5-491b55e2090f"
+exclusive = false
+ui_only = true
+conflicts = {  }
+requires = {"zcbf6277-24e3-437a-b968-Common-v1"}
+before = {"zcbf6277-24e3-437a-b968-Common-v1"}
+after = { }
+icon = "/mods/autoengies_areareclaim/biteit.jpg"
