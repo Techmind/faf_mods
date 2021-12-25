@@ -20,16 +20,22 @@ end
 
 GameMain.AddBeatFunction(AE_OnBeat)
 
-local originalCreateUI = CreateUI
+local originalCreateUI_RECLAIM = CreateUI
 function CreateUI(isReplay)
-	originalCreateUI(isReplay)
+	originalCreateUI_RECLAIM(isReplay)
 	local oldEvent = gameParent.HandleEvent
 	gameParent.HandleEvent = function(self, event)
-		if event.Type == 'ButtonPress' and event.Modifiers.Right and event.Modifiers.Ctrl then
-			reclaim.DragStart()
-		elseif event.Type == 'ButtonRelease'  then
-			reclaim.DragEnd()
+	
+		local curSelection = GetSelectedUnits()
+		
+		if not curSelection then
+			if event.Type == 'ButtonPress' and event.Modifiers.Right and event.Modifiers.Ctrl then
+				reclaim.DragStart()
+			elseif event.Type == 'ButtonRelease'  then
+				reclaim.DragEnd()
+			end			
 		end
-		oldEvent(event)
+		
+		oldEvent(self, event)
 	end
 end

@@ -77,7 +77,11 @@ function UpdateReclaim(syncTable)
 				ReclaimBySquare[xP][zP].targets[id] = data
 			else
 				-- something was reclaimed/destroyed here
-				ReclaimBySquare[xP][zP].mass = ReclaimBySquare[xP][zP].mass - (Reclaim[id].mass - data.mass)
+				if (Reclaim[id] and data) then
+					if (Reclaim[id].mass and data.mass) then
+						ReclaimBySquare[xP][zP].mass = ReclaimBySquare[xP][zP].mass - (Reclaim[id].mass - data.mass)
+					end
+				end
 			end
 			
 			if (ReclaimBySquare[xP][zP].mass < 10) then

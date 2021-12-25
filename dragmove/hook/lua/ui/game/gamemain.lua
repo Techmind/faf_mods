@@ -13,21 +13,47 @@ function Drag_OnBeat()
 	end
 end
 
+function tLOG (tbl, indent)	
+  if not indent then indent = 0 end
+  formatting = string.rep("  ", indent)
+  if type(tbl) == "nil" then
+	LOG(formatting .. "nil")
+	return
+  end
+  --LOG(type(tbl))
+  for k, v in pairs(tbl) do
+    formatting = string.rep("  ", indent) .. k .. ": "
+	if type(v) == "nil" then
+	  LOG(formatting .. "NIL")
+    elseif type(v) == "table" then
+      LOG(formatting)
+      tLOG(v, indent+1)
+    elseif type(v) == 'boolean' then
+      LOG(formatting .. tostring(v))      
+    else
+      LOG(formatting)
+	  LOG(v)
+    end
+  end
+end
+
 GameMain.AddBeatFunction(Drag_OnBeat)
 
-local originalCreateUI = CreateUI
+local originalCreateUI_DRAG = CreateUI
 function CreateUI(isReplay)
-	originalCreateUI(isReplay)
+	originalCreateUI_DRAG(isReplay)
 	local oldEvent = gameParent.HandleEvent
 	gameParent.HandleEvent = function(self, event)
 		-- Get the currently selected units, ignore ctrl-drag with NO seleected units, used in reclaim mod already to "paint" area
 		local curSelection = GetSelectedUnits()
 		
 		if not curSelection then
-			oldEvent(isReplay)
+			oldEvent(self, event)
 			return
-		end
+		end		
 		
+		--tLOG(event)
+		--print("size.." .. table.getn(curSelection))
 
 		if event.Type == 'ButtonPress' and event.Modifiers.Right and event.Modifiers.Ctrl then
 			-- ignore for single units
@@ -41,6 +67,6 @@ function CreateUI(isReplay)
 				return
 			end
 		end
-		oldEvent(event)
+		oldEvent(self, event)
 	end
 end
